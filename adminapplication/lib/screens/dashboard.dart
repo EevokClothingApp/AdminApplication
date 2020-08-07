@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
+  @override
+  _DashboardState createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -136,6 +141,12 @@ class Dashboard extends StatelessWidget {
                   ),
                 ),
               ),
+              // FloatingActionButton(
+              //   child: Icon(Icons.add),
+              //   onPressed: () {
+              //     fb.createRecord();
+              //   },
+              // ),
             ],
           ),
         )

@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Manage extends StatelessWidget {
+class Manage extends StatefulWidget {
+  @override
+  _ManageState createState() => _ManageState();
+}
+
+class _ManageState extends State<Manage> {
+  TextEditingController catController;
+  GlobalKey<FormState> _catFormKey = GlobalKey();
+  TextEditingController brandController;
+  GlobalKey<FormState> _brandFormKey;
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -20,7 +30,9 @@ class Manage extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.add_circle),
           title: Text("Add Category"),
-          onTap: () {},
+          onTap: () {
+            createCategory();
+          },
         ),
         Divider(),
         ListTile(
@@ -32,7 +44,9 @@ class Manage extends StatelessWidget {
         ListTile(
           leading: Icon(Icons.add_circle_outline),
           title: Text("Add Brand"),
-          onTap: () {},
+          onTap: () {
+            createBrand();
+          },
         ),
         Divider(),
         ListTile(
@@ -43,5 +57,74 @@ class Manage extends StatelessWidget {
         Divider(),
       ],
     );
+  }
+
+  void createCategory() {
+    var alert = new AlertDialog(
+      content: Form(
+        key: _catFormKey,
+        child: TextFormField(
+          controller: catController,
+          decoration: InputDecoration(hintText: "Category"),
+          validator: (value) {
+            if (value.isEmpty) {
+              return 'Empty field';
+            }
+          },
+        ),
+      ),
+      actions: <Widget>[
+        FlatButton.icon(
+          onPressed: () {},
+          icon: Icon(Icons.add),
+          label: Text("Add"),
+        ),
+        FlatButton.icon(
+          onPressed: () {
+            Navigator.of(context, rootNavigator: true).pop('dialog');
+          },
+          icon: Icon(Icons.close),
+          label: Text("Close"),
+        ),
+      ],
+    );
+    showDialog(context: context, builder: (_) => alert);
+  }
+
+  void createBrand() {
+    var alert = new AlertDialog(
+      content: Form(
+        key: _brandFormKey,
+        child: TextFormField(
+          controller: catController,
+          decoration: InputDecoration(hintText: "Brand"),
+          validator: (value) {
+            if (value.isEmpty) {
+              return 'Empty field';
+            }
+          },
+        ),
+      ),
+      actions: <Widget>[
+        FlatButton.icon(
+          onPressed: () {},
+          icon: Icon(Icons.add),
+          label: Text("Add"),
+        ),
+        FlatButton.icon(
+          onPressed: () {
+            Navigator.of(context, rootNavigator: true).pop('dialog');
+          },
+          icon: Icon(Icons.close),
+          label: Text("Close"),
+        ),
+      ],
+    );
+    showDialog(context: context, builder: (_) => alert);
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    throw UnimplementedError();
   }
 }
