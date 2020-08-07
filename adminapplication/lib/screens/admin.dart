@@ -1,3 +1,5 @@
+import 'package:adminapplication/screens/dashboard.dart';
+import 'package:adminapplication/screens/manage.dart';
 import 'package:flutter/material.dart';
 
 enum Page { dashboard, manage }
@@ -33,17 +35,23 @@ class _AdminState extends State<Admin> {
               ),
             ),
             Expanded(
-                child: FlatButton.icon(
-                    onPressed: () {
-                      setState(() {
-                        _selectPage = Page.manage;
-                      });
-                    },
-                    icon: Icon(Icons.sort, color: _selectPage == Page.manage ? active : inActive,),
-                    label: Text("Manage"),),),
+              child: FlatButton.icon(
+                onPressed: () {
+                  setState(() {
+                    _selectPage = Page.manage;
+                  });
+                },
+                icon: Icon(
+                  Icons.sort,
+                  color: _selectPage == Page.manage ? active : inActive,
+                ),
+                label: Text("Manage"),
+              ),
+            ),
           ],
         ),
       ),
+      body: _selectPage == Page.dashboard ? Dashboard() : Manage(),
     );
   }
 }
