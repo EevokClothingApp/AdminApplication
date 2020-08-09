@@ -1,3 +1,4 @@
+import 'package:adminapplication/screens/add_product.dart';
 import 'package:flutter/material.dart';
 
 class Manage extends StatefulWidget {
@@ -18,7 +19,14 @@ class _ManageState extends State<Manage> {
         ListTile(
           leading: Icon(Icons.add),
           title: Text("Add Products"),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (_) => AddProduct(),
+              ),
+            );
+          },
         ),
         Divider(),
         ListTile(
