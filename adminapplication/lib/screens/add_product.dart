@@ -6,8 +6,8 @@ class AddProduct extends StatefulWidget {
 }
 
 class _AddProductState extends State<AddProduct> {
-  
   GlobalKey<FormState> _formKey;
+  TextEditingController productNameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,33 @@ class _AddProductState extends State<AddProduct> {
                 ),
               ],
             ),
-            
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: Text(
+            //     "Enter Product Name",
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(fontSize: 16.0),
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                textAlign: TextAlign.center, 
+                autofocus: true,
+                maxLength: 10,
+                keyboardAppearance: Brightness.dark,
+                controller: productNameController,
+                decoration: InputDecoration(
+                  hintText: 'Product Name',
+                  floatingLabelBehavior: FloatingLabelBehavior.always
+                ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'You must enter the product name';
+                  }
+                },
+              ),
+            ),
           ],
         ),
       ),

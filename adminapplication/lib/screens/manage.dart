@@ -1,5 +1,8 @@
+import 'package:adminapplication/db/brand.dart';
+import 'package:adminapplication/db/category.dart';
 import 'package:adminapplication/screens/add_product.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Manage extends StatefulWidget {
   @override
@@ -7,10 +10,12 @@ class Manage extends StatefulWidget {
 }
 
 class _ManageState extends State<Manage> {
-  TextEditingController catController;
+  TextEditingController catController = TextEditingController();
   GlobalKey<FormState> _catFormKey = GlobalKey();
-  TextEditingController brandController;
+  TextEditingController brandController = TextEditingController();
   GlobalKey<FormState> _brandFormKey;
+  BrandService _brandService = BrandService();
+  CategoryService _categoryService = CategoryService();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +25,7 @@ class _ManageState extends State<Manage> {
           leading: Icon(Icons.add),
           title: Text("Add Products"),
           onTap: () {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (_) => AddProduct(),
@@ -46,7 +51,9 @@ class _ManageState extends State<Manage> {
         ListTile(
           leading: Icon(Icons.category),
           title: Text("Category List"),
-          onTap: () {},
+          onTap: () {
+            _categoryService.getCategory();
+          },
         ),
         Divider(),
         ListTile(
@@ -83,7 +90,13 @@ class _ManageState extends State<Manage> {
       ),
       actions: <Widget>[
         FlatButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            if (catController.text != null) {
+              _categoryService.createCategory(catController.text);
+            }
+            Fluttertoast.showToast(msg: 'Category created');
+            Navigator.of(context, rootNavigator: true).pop('dialog');
+          },
           icon: Icon(Icons.add),
           label: Text("Add"),
         ),
@@ -104,7 +117,7 @@ class _ManageState extends State<Manage> {
       content: Form(
         key: _brandFormKey,
         child: TextFormField(
-          controller: catController,
+          controller: brandController,
           decoration: InputDecoration(hintText: "Brand"),
           validator: (value) {
             if (value.isEmpty) {
@@ -115,7 +128,13 @@ class _ManageState extends State<Manage> {
       ),
       actions: <Widget>[
         FlatButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            if (brandController.text != null) {
+              _brandService.createBrand(brandController.text);
+            }
+            Fluttertoast.showToast(msg: 'Brand created');
+            Navigator.of(context, rootNavigator: true).pop('dialog');
+          },
           icon: Icon(Icons.add),
           label: Text("Add"),
         ),
