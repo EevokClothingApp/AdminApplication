@@ -79,6 +79,7 @@ class _ManageState extends State<Manage> {
       content: Form(
         key: _catFormKey,
         child: TextFormField(
+          autofocus: true,
           controller: catController,
           decoration: InputDecoration(hintText: "Category"),
           validator: (value) {
@@ -93,6 +94,7 @@ class _ManageState extends State<Manage> {
           onPressed: () {
             if (catController.text != null) {
               _categoryService.createCategory(catController.text);
+              catController.text = '';
             }
             Fluttertoast.showToast(msg: 'Category created');
             Navigator.of(context, rootNavigator: true).pop('dialog');
@@ -117,6 +119,7 @@ class _ManageState extends State<Manage> {
       content: Form(
         key: _brandFormKey,
         child: TextFormField(
+          autofocus: true,
           controller: brandController,
           decoration: InputDecoration(hintText: "Brand"),
           validator: (value) {
@@ -129,7 +132,7 @@ class _ManageState extends State<Manage> {
       actions: <Widget>[
         FlatButton.icon(
           onPressed: () {
-            if (brandController.text != null) {
+            if (brandController.text.isNotEmpty) {
               _brandService.createBrand(brandController.text);
             }
             Fluttertoast.showToast(msg: 'Brand created');
