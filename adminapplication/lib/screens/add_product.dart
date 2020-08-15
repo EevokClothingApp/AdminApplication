@@ -202,6 +202,26 @@ class _AddProductState extends State<AddProduct> {
                 },
               ),
             ),
+            SizedBox(height: 35.0,),
+            RaisedButton(
+              elevation: 5.0,
+              onPressed: () {},
+              padding: EdgeInsets.all(15.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              color: Colors.red,
+              child: Text(
+                'Add Product',
+                style: TextStyle(
+                  color: Colors.black87,
+                  letterSpacing: 1.5,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'openSans',
+                ),
+              ),
+            ),
           ],
         ),
       ),
