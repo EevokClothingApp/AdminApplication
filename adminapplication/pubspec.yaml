@@ -30,6 +30,7 @@ dependencies:
   fluttertoast: ^7.0.2
   flutter_typeahead: ^1.8.7
   firebase_storage: 
+  flutter_spinkit:
 
 
   # The following adds the Cupertino Icons font to your application.
