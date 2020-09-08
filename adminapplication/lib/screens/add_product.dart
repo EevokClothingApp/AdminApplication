@@ -115,7 +115,6 @@ class _AddProductState extends State<AddProduct> {
                 child: SpinKitCubeGrid(
                 color: Colors.deepOrangeAccent,
                 size: 50.0,
-                
               ))
             : ListView(
                 children: <Widget>[
@@ -431,15 +430,22 @@ class _AddProductState extends State<AddProduct> {
             images: imageList,
             description: description);
 
-        
-        setState(() {
-          _isLoading = false;
-        });
-        Fluttertoast.showToast(msg: 'Product Added');
-      } else {
         setState(() {
           _isLoading = false;
           _formKey.currentState.reset();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
+        });
+        Fluttertoast.showToast(msg: 'Product Added');
+        
+      } else {
+        setState(() {
+          _isLoading = false;
+          // _formKey.currentState.reset();
+          productNameController.clear();
+          productDescriptionController.clear();
+          productPriceController.clear();
         });
         Fluttertoast.showToast(msg: "Please Add an Image");
       }
