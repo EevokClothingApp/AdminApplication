@@ -1,6 +1,9 @@
 import 'package:adminapplication/db/brand.dart';
 import 'package:adminapplication/db/category.dart';
-import 'package:adminapplication/screens/add_product.dart';
+import 'package:adminapplication/screens/inner_screens/add_product.dart';
+import 'package:adminapplication/screens/inner_screens/brands.dart';
+import 'package:adminapplication/screens/inner_screens/categories.dart';
+import 'package:adminapplication/screens/inner_screens/products.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -37,7 +40,14 @@ class _ManageState extends State<Manage> {
         ListTile(
           leading: Icon(Icons.change_history),
           title: Text("Products List"),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => Products(),
+              ),
+            );
+          },
         ),
         Divider(),
         ListTile(
@@ -52,7 +62,12 @@ class _ManageState extends State<Manage> {
           leading: Icon(Icons.category),
           title: Text("Category List"),
           onTap: () {
-            _categoryService.getCategory();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => Categories(),
+              ),
+            );
           },
         ),
         Divider(),
@@ -67,7 +82,14 @@ class _ManageState extends State<Manage> {
         ListTile(
           leading: Icon(Icons.library_books),
           title: Text("Brand List"),
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => Brands(),
+              ),
+            );
+          },
         ),
         Divider(),
       ],
